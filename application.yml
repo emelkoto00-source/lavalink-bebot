@@ -1,13 +1,22 @@
 server:
+  # Railway's PORT variable is 2333; Public Networking also targets 2333.
   port: ${PORT:2333}
   address: 0.0.0.0
 
 lavalink:
+  # Lavalink downloads the proper plugin artifact from Maven during startup.
+  # Coordinates based on the research report provided by the user.
+  plugins:
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
+      snapshot: false
+
   server:
+    # Keep your actual secret in Railway Variables; never publish it on GitHub.
     password: ${LAVALINK_PASSWORD:change-me-now}
 
     sources:
-      youtube: true
+      # Deprecated built-in source OFF; official YouTube plugin handles YouTube.
+      youtube: false
       bandcamp: true
       soundcloud: true
       twitch: true
@@ -19,6 +28,16 @@ lavalink:
     frameBufferDurationMs: 5000
     playerUpdateInterval: 5
     soundcloudSearchEnabled: true
+
+# Configuration of the officially loaded YouTube plugin.
+plugins:
+  youtube:
+    enabled: true
+    allowSearch: true
+    allowDirectVideoIds: true
+    allowDirectPlaylistIds: true
+    # Keep the plugin's own default clients for the first controlled test.
+    # Do not add browser cookies or personal YouTube OAuth credentials.
 
 metrics:
   prometheus:
