@@ -7,7 +7,7 @@ lavalink:
     password: ${LAVALINK_PASSWORD:change-me-now}
 
     sources:
-      youtube: false
+      youtube: true
       bandcamp: true
       soundcloud: true
       twitch: true
@@ -31,16 +31,3 @@ logging:
   level:
     root: INFO
     lavalink: INFO
-
-plugins:
-  youtube:
-    enabled: true
-    allowSearch: true
-    allowDirectVideoIds: true
-    allowDirectPlaylistIds: true
-    clients:
-      - MUSIC
-      - ANDROID_VR
-      - WEB
-    oauth:
-      enabled: false
